@@ -1,4 +1,6 @@
-
+var FREQUENCY = 400;
+var songStr="";
+var songArr;
 function parseNote(singleNoteStr) {
   noteObj = new Object();
   noteArr = singleNoteStr.split("*");
@@ -18,15 +20,16 @@ function parseSong(songStr) {
 };
 var onComplete = function () {
   alert("Song finished playing");
-}
+  //flag = true;
+  getSong();
+};
+var getSong = function(){
+songStr = prompt("Enter a song string (Empty String to quit): ");
+   if(songStr!==""){
+      songArr = parseSong(songStr);
+      playSong(songArr,FREQUENCY,onComplete);}
+//flag = false;
+};
 
-var FREQUENCY = 400;
-songStr = "A*2 Bb*3 B*3 C*3 C#*3 D E F G F E D C#*3 C*3 B*3 Bb*3 A*2";
-while (songStr !== "") {
-  songStr = prompt("Enter a song string (Empty String to quit): ");
-  if (songStr !== "") { 
-    songArr = parseSong(songStr);
-    playSong(songArr,FREQUENCY,onComplete);
-  };
-}
-
+//songStr = "A*2 Bb*3 B*3 C*3 C#*3 D E F G F E D C#*3 C*3 B*3 Bb*3 A*2";
+getSong();
